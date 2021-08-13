@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy, :update]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   # before_action :move_to_index, only: [:edit, :update]
   # ここにオプションを追記するauthenticate_user!をどのアクションで使うのか
@@ -25,6 +26,7 @@ def show
   @prototype = Prototype.find(params[:id])
   @comment = Comment.new
   @comments = @prototype.comments.includes(:prototype)
+  redirect_to root_path
 end
 
 def update
