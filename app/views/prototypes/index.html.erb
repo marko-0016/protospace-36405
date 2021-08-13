@@ -4,7 +4,7 @@
     <%# ここにログインしている時だけ以下を表示する条件分岐の記述する %>
      <% if user_signed_in? %>
       <div class="greeting">
-        <%= "こんにちは、#{current_user.name}" %>
+        <%= "こんにちは、#{@name}" %>
         <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link%>
       </div>
       <% end %>

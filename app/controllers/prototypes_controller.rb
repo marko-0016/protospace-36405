@@ -1,5 +1,8 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :update]
+
+  # before_action :move_to_index, only: [:edit, :update]
+  # ここにオプションを追記するauthenticate_user!をどのアクションで使うのか
 
  def index
   @prototypes = Prototype.all
@@ -49,10 +52,10 @@ end
   params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
  end
 
- def edit
-  @prototype = Prototype.find(params[:id])
-  unless @prototype.user_id == current_user.id
-    redirect_to action: :index
+  def move_to_index
+    @prototype = Prototype.find(params[:id])
+    unless @prototype.user_id == current_user.id
+      redirect_to action: :index
+    end
   end
- end
 end

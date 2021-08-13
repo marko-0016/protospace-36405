@@ -2,11 +2,21 @@
   <%= link_to image_tag(prototype.image, class: :card__img ), prototype_path(prototype.id) %>
 
   <div class="card__body">
-    <%= link_to "プロトタイプのタイトル", prototype_path(prototype.id), class: :card__title%>
+    <%= link_to prototype.title, prototype_path(prototype.id), class: :card__title%>
 
     <p class="card__summary">
-      <%= "プロトタイプのキャッチコピー" %>
+      <%= prototype.catch_copy %>
     </p>
-    <%= link_to "by プロトタイプの投稿者名", user_path(current_user), class: :card__user %>
+
+<%= link_to "by " + prototype.user.name, user_path(prototype.user.id) %>
+
+    <%# <%= link_to users.name, user_path(user.id), class: :card__user %> 
+
+    <%# <%= link_to  "by #{@name}", user_path(prototype.user.name), class: :card__user %> 
+    
+            <%# current_user　の箇所修正。どのユーザーを掲載したいか、投稿した本人の詳細ページに遷移 %>
+                    <%# <span>投稿者</span><%= @tweet.user.nickname %> 
+                <%#  comment.user.name, "/users/#{comment.user_id}", class: :comment_user %>
+
   </div>
 </div>
